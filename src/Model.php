@@ -609,7 +609,7 @@ class Model extends \CI_Model implements \ArrayAccess
                 list($order, $sort) = $set;
             }
             
-            $query = ($sort) ? $query->order_by($order) : $query->order_by($order, $sort);
+            $query = ($sort) ? $query->order_by($order, $sort) : $query->order_by($order);
         }
         
         $records = $query->get()->result_array();
