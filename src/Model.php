@@ -579,7 +579,7 @@ class Model extends \CI_Model implements \ArrayAccess
      *  $this->Model->find()->where_in('id', [3,21,135]);
      *  $this->Model->findAll();
      */
-    public static function findAll($condition=[], $limit=null, $order=null)
+    public static function findAll($condition=[], $limit=null)
     {
         $instance = (isset($this)) ? $this : new static;
 
@@ -598,18 +598,6 @@ class Model extends \CI_Model implements \ArrayAccess
             
             $query = ($limit) ? $query->limit($limit) : $query;
             $query = ($offset) ? $query->offset($offset) : $query;
-        }
-        
-        if ($order) {
-            
-            $sort = null;
-            
-            if (is_array($order) && isset($order[1])) {
-                $set = $order;
-                list($order, $sort) = $set;
-            }
-            
-            $query = ($sort) ? $query->order_by($order) : $query->order_by($order, $sort);
         }
         
         $records = $query->get()->result_array();
