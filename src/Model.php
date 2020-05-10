@@ -1304,7 +1304,7 @@ class Model extends \CI_Model implements \ArrayAccess
         // Check ORM Schema cache
         if (!isset(self::$_ormCaches[$class])) {
 
-            $columns = $this->_dbr->query("SHOW COLUMNS FROM `{$this->table}`;")
+            $columns = $this->_dbr->query("SHOW COLUMNS FROM {$this->table};")
                 ->result_array();
 
             // Cache
