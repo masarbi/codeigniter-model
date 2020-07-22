@@ -1623,7 +1623,7 @@ class Model extends \CI_Model implements \ArrayAccess
             
             // Check if exists
             foreach ($this->getTableSchema() as $key => $column) {
-                if ($name == $column['Field']) {
+                if ($name == $column['COLUMN_NAME']) {
                     $flag = true;
                 }
             }
@@ -1664,8 +1664,8 @@ class Model extends \CI_Model implements \ArrayAccess
             // Write cache to read properties of this ORM
             foreach ($this->getTableSchema() as $key => $column) {
 
-                $this->_readProperties[$column['Field']] = isset($this->_readProperties[$column['Field']]) 
-                    ? $this->_readProperties[$column['Field']] 
+                $this->_readProperties[$column['COLUMN_NAME']] = isset($this->_readProperties[$column['COLUMN_NAME']]) 
+                    ? $this->_readProperties[$column['COLUMN_NAME']] 
                     : null;
             }
 
