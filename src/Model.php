@@ -1211,17 +1211,16 @@ class Model extends \CI_Model implements \ArrayAccess
         $foreignKey = ($foreignKey) ? $foreignKey : $this->primaryKey;
         $localKey = ($localKey) ? $localKey : $this->primaryKey; 
 
-        if(empty($this->_field(static::SOFT_DELETED)))
+        if(empty(static::SOFT_DELETED))
         {
-            $query = $model->find()
-                ->where($this->_field($foreignKey), $this->$localKey);
+            $query = $model->find()->where($model->_field($foreignKey), $this->$localKey);
         }
         else
         {
             $query = $model->find()
-                ->where($this->_field($foreignKey), $this->$localKey)
+                ->where($model->_field($foreignKey), $this->$localKey)
                 ->where($this->_field(static::SOFT_DELETED), $this->softDeletedFalseValue)
-                ->join($this->tableName(), $this->_field($foreignKey).' = '.$model->_field($localKey));
+                ->join($this->tableName(), $model->_field($foreignKey).' = '.$this->_field($localKey));
         }
 
         // Inject Model name into query builder for ORM relationships
